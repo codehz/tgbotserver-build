@@ -14,12 +14,14 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          apk add --update alpine-sdk linux-headers git zlib-dev libressl-dev gperf cmake
+          apk add --update alpine-sdk linux-headers git zlib-dev libressl-dev gperf cmake ninja
       - uses: actions/checkout@v2
         with:
           repository: tdlib/telegram-bot-api
           submodules: recursive
       - name: Build
+        env:
+          CMAKE_GENERATOR: Ninja
         run: |
           mkdir build
           cd build
