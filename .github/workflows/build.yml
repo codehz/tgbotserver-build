@@ -33,7 +33,7 @@ jobs:
           wget https://github.com/codehz/EasyPak/releases/download/v0.5.0/ezbin
           chmod +x ezbin
           mkdir lib
-          lld bin/telegram-bot-api | tail -n +2 | awk '{ print $3 }' | while read line; do cp $line lib; done
+          ldd bin/telegram-bot-api | tail -n +2 | awk '{ print $3 }' | while read line; do cp $line lib; done
           ./ezbin api <(
           cat <<EOF
           mktmpfs /tmp
@@ -54,4 +54,4 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: inspect
-          path: api
+          path: build/api
