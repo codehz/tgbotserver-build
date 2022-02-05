@@ -29,7 +29,6 @@ jobs:
           cmake --build . --target install
       - name: Package
         run: |
-          cd build
           wget https://github.com/codehz/EasyPak/releases/download/v0.5.0/ezbin
           chmod +x ezbin
           mkdir lib
