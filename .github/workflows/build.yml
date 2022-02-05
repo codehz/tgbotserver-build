@@ -31,3 +31,8 @@ jobs:
           mkdir build
           cd build
           CXXFLAGS="-stdlib=libc++" CC=/usr/bin/clang-10 CXX=/usr/bin/clang++-10 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. ..
+      - name: Upload artifact for inspect
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: inspect
+          path: bin
