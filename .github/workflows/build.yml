@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine
+
+    steps:
+      - name: Install dependencies
+        run: |
+          apk add --update alpine-sdk linux-headers git zlib-dev libressl-dev gperf cmake
+      - uses: actions/checkout@v2
+        with:
+          repository: tdlib/telegram-bot-api
+          submodules: recursive
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. ..
+          cmake --build . --target install
+
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          CXXFLAGS="-stdlib=libc++" CC=/usr/bin/clang-10 CXX=/usr/bin/clang++-10 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. ..
