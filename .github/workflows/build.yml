@@ -19,6 +19,8 @@ jobs:
         with:
           repository: tdlib/telegram-bot-api
           submodules: recursive
+      - name: Generate git hash
+        run: echo "UPSTREAM_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
       - name: Build
         env:
           CMAKE_GENERATOR: Ninja
@@ -60,7 +62,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: "upstream-${{ env.UPSTREAM_HASH }}"
           prerelease: true
           title: Nightly build
           files: api-server
