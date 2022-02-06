@@ -33,7 +33,7 @@ jobs:
           chmod +x ezbin
           mkdir lib
           ldd bin/telegram-bot-api | tail -n +2 | awk '{ print $3 }' | while read line; do cp $line lib; done
-          ./ezbin api <(
+          ./ezbin api-server <(
           cat <<EOF
           mktmpfs /tmp
           mktmpfs /tmp/tmp
@@ -49,8 +49,18 @@ jobs:
           exec-passthru /bin/telegram-bot-api
           EOF
           )
-      - name: Upload artifact for inspect
+      - name: Upload artifact
         uses: actions/upload-artifact@v2.3.1
         with:
-          name: inspect
-          path: api
+          name: artifact
+          path: |
+            bin
+            lib
+      - name: Upload release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: Nightly build
+          files: api-server
