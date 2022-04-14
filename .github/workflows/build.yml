@@ -15,6 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           apk add --update alpine-sdk linux-headers git zlib-dev libressl-dev gperf cmake ninja
+          git config --global --add safe.directory /__w/tgbotserver-build/tgbotserver-build
       - uses: actions/checkout@v2
         with:
           repository: tdlib/telegram-bot-api
