@@ -3,7 +3,7 @@ name: Build
 on:
   push:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 8 * * *'
 
 jobs:
   build:
@@ -63,6 +63,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
           automatic_release_tag: "upstream-${{ env.UPSTREAM_HASH }}"
-          title: Nightly build
+          title: Nightly build for ${{ env.UPSTREAM_HASH }}
           files: api-server
