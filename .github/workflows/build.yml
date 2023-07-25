@@ -60,10 +60,9 @@ jobs:
             bin
             lib
       - name: Upload release
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: dothq/tag-and-release-and-upload@v1.2.0
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          automatic_release_tag: "upstream-${{ env.UPSTREAM_HASH }}"
-          title: Nightly build for ${{ env.UPSTREAM_HASH }}
-          files: api-server
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          version: "upstream-${{ env.UPSTREAM_HASH }}"
+          overwrite: true
+          assets: '["api-server"]'
