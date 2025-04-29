@@ -5,8 +5,8 @@ concurrency:
 on:
   push:
     paths:
-      .github/workflows/docker.yml
-      Dockerfile
+      - .github/workflows/docker.yml
+      - Dockerfile
   schedule:
     - cron: '0 8 * * *'
 

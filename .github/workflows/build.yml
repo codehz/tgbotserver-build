@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     paths:
-      .github/workflows/build.yml
+      - .github/workflows/build.yml
   schedule:
     - cron: '0 8 * * *'
 
