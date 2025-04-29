@@ -34,9 +34,9 @@ jobs:
           submodules: recursive
       - uses: actions/checkout@v4
         with:
-          path: /tmp/main
+          path: tmp
       - name: Copy dockerfile
-        run: cp /tmp/main/Dockerfile .
+        run: cp tmp/Dockerfile .
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Login to GitHub Container Registry
