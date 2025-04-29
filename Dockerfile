@@ -4,7 +4,7 @@ RUN apk add --update alpine-sdk linux-headers git zlib-dev libressl-dev gperf cm
 
 COPY . .
 
-RUN mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. .. && cmake --build . --target install
+RUN ls -alh && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. .. && cmake --build . --target install
 
 FROM alpine:latest AS final
 
