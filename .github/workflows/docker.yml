@@ -39,7 +39,7 @@ jobs:
         with:
           path: tmp
       - name: Copy dockerfile
-        run: cp tmp/Dockerfile .
+        run: cp tmp/Dockerfile . && ls -alh
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Login to GitHub Container Registry
